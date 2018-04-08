@@ -1,14 +1,25 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include "Adafruit_LEDBackpack.h"
+#include <Servo.h>
 
 Adafruit_8x8matrix sweeperEye1 = Adafruit_8x8matrix();
 #define irSensorInputPin 7
+#define servoLeftPin 9
+#define servoRightPin 10
+Servo sweeperLeftServo;
+Servo sweeperRightServo;
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   sweeperEye1.begin(0x70);
   pinMode(irSensorInputPin,INPUT);
+  sweeperLeftServo.attach(9);
+  sweeperRightServo.attach(10);
+
+  //Counter clockwise
+  sweeperLeftServo.writeMicroseconds(1550);
 }
 
 static const uint8_t PROGMEM
